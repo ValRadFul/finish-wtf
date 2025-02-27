@@ -2,80 +2,147 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=\, initial-scale=1.0">
-    <title>Простой калькулятор</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <h1 style="color: red; font-weight: bold; font-style: italic; text-align: center;">ВРЕМЯ ДЕНЬГИ</h1>
+    <h2 style="color: rgb(71, 21, 255); font-weight: bold; font-style: italic; text-align: center;">считай внимательно, не теряй ни сикунды, и не забывай ради чего ты работаешь</h2>
+    <title>Часы и Калькулятор</title>
     <style>
-        h1 {
-            color: #333;
-            font-size: 24px;
-            line-height: 1.6;
-            margin-bottom: 1.2em;
-            font-family: Arial, sans-serif;
-            text-align: center; 
+        body {
+            background-color: #1a1a1a;  /* Темный фон для всей страницы */
+            color: #ffffff;  /* Белый цвет текста по умолчанию */
         }
-        p {
-            color: #333;
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 1.2em;
-            font-family: Arial, sans-serif;
-            text-align: center; 
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .clock-container {
+            width: 300px;
+            margin: 50px auto;
+            text-align: center;
         }
         
+        canvas {
+            background-color: #2d2d2d;  /* Темный фон для часов */
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255,255,255,0.1);  /* Светлая тень */
+        }
+
+        .digital-clock {
+            font-size: 24px;
+            font-family: Arial, sans-serif;
+            margin-top: 20px;
+            color: #ffffff;  /* Белый цвет для цифровых часов */
+        }
+
         .calculator {
             width: 300px;
             margin: 50px auto;
             padding: 20px;
-            border: 1px solid #ccc;
+            border: 1px solid #8f0101;
             border-radius: 5px;
-            background-color: #90EE90;
+            background-color: #830a1e;
         }
         
-        input {
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 5px;
+        .calculator input {
+            width: 90%;
+            margin: 5px auto;
+            padding: 8px;
+            font-size: 18px;
+            display: block;
         }
         
-        .buttons {
+        .calculator .buttons {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 5px;
+            gap: 3px;
         }
         
-        button {
-            padding: 10px;
+        .calculator button {
+            padding: 15px;
             font-size: 18px;
+            border: 1px solid #2404b1;
+            background-color: rgb(113, 3, 134);
             cursor: pointer;
+        }
+
+        .calculator button:hover {
+            background-color: #e72020;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .image-container img {
+            max-width: 150px; /* Уменьшенный размер */
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255,255,255,0.1);
+        }
+
+        .telegram-link {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #0088cc;  /* Цвет Telegram */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(255,255,255,0.1);
+            transition: background-color 0.3s;
+            z-index: 1000; /* Чтобы ссылка была поверх других элементов */
+        }
+
+        .telegram-link:hover {
+            background-color: #0077b3;
         }
     </style>
     <script src="index.js" defer></script>
 </head>
 <body>
-    <h1 style="color: red; font-style: italic;">Простой калькулятор</h1>
-    <div class="calculator">
-        <input type="text" id="display" readonly>
-        <div class="buttons">
-            <button onclick="appendNumber('7')">7</button>
-            <button onclick="appendNumber('8')">8</button>
-            <button onclick="appendNumber('9')">9</button>
-            <button onclick="setOperation('+')">+</button>
-            
-            <button onclick="appendNumber('4')">4</button>
-            <button onclick="appendNumber('5')">5</button>
-            <button onclick="appendNumber('6')">6</button>
-            <button onclick="setOperation('-')">-</button>
-            
-            <button onclick="appendNumber('1')">1</button>
-            <button onclick="appendNumber('2')">2</button>
-            <button onclick="appendNumber('3')">3</button>
-            <button onclick="setOperation('*')">×</button>
-            
-            <button onclick="appendNumber('0')">0</button>
-            <button onclick="clearDisplay()">C</button>
-            <button onclick="calculate()">=</button>
-            <button onclick="setOperation('/')">/</button>
+    <div class="container">
+        <div class="clock-container">
+            <canvas id="clockCanvas" width="300" height="300"></canvas>
+            <div id="digitalClock" class="digital-clock">00:00:00</div>
+        </div>
+
+        <div class="calculator">
+            <input type="text" id="display" readonly>
+            <div class="buttons">
+                <button onclick="appendNumber('7')">7</button>
+                <button onclick="appendNumber('8')">8</button>
+                <button onclick="appendNumber('9')">9</button>
+                <button onclick="setOperation('+')">+</button>
+                
+                <button onclick="appendNumber('4')">4</button>
+                <button onclick="appendNumber('5')">5</button>
+                <button onclick="appendNumber('6')">6</button>
+                <button onclick="setOperation('-')">-</button>
+                
+                <button onclick="appendNumber('1')">1</button>
+                <button onclick="appendNumber('2')">2</button>
+                <button onclick="appendNumber('3')">3</button>
+                <button onclick="setOperation('*')">×</button>
+                
+                <button onclick="appendNumber('0')">0</button>
+                <button onclick="clearDisplay()">C</button>
+                <button onclick="calculate()">=</button>
+                <button onclick="setOperation('/')">/</button>
+            </div>
         </div>
     </div>
+    
+    <div class="image-container" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);">
+        <img src="photo_2025-02-05_13-30-54.jpg" alt="картинка">
+    </div>
+    
+    <a href="https://t.me/radvalful" class="telegram-link" target="_blank">Telegram</a>
 </body>
 </html>
