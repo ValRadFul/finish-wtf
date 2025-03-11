@@ -1,0 +1,26 @@
+{
+  "name": "calculator-app",
+  "version": "1.0.0",
+  "description": "Calculator application with clock",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "transform": {},
+    "moduleFileExtensions": ["js", "mjs"],
+    "testMatch": ["**/__tests__/**/*.js", "**/?(*.)+(spec|test).js"],
+    "globals": {
+      "jest": true
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

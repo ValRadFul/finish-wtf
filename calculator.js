@@ -57,5 +57,7 @@ function updateCalcDisplay() {
     const display = document.getElementById('display');
     display.value = currentNumber || '0';
 }
-
-export { appendNumber, setOperation, calculate, clearDisplay }; 
+function aaa() {
+    return 'aa';
+}
+export { appendNumber, setOperation, calculate, clearDisplay, aaa }; 
